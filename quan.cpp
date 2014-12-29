@@ -5,6 +5,7 @@ struct Node {
   int u,v;
   char str[10];
 }que[MAXN];
+/*find*/
 int find(int x){
   if(x!=pre[x]){
     int t=pre[x];
@@ -25,11 +26,5 @@ int main(){
   int n,m,x,y,i;
   char s[10];
   scanf("%d%d",&n,&m);
-  for(i=1;i<=n;i++){
-    pre[i]=i;
-  }
-  while(m--){
-    scanf("%d%d%s",&x,&y,s);
-
   }
 }
