@@ -14,6 +14,7 @@ int find(int x){
   }
   return pre[x];
 }
+/*union*/
 void Union(int x,int y){
   int fx=find(x),fy=find(y);
   if(fx>fy){
