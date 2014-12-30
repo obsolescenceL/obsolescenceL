@@ -1,6 +1,5 @@
 #include<cstdio>
 #include<cstring>
-#include<string>
 #include<algorithm>
 using namespace std;
 const int MAXN=1010;
@@ -14,7 +13,6 @@ int LCS(int n,int m){
       if(a[i-1]==b[j-1])dp[i][j]=dp[i-1][j-1]+1;
       else dp[i][j]=max(dp[i][j-1],dp[i-1][j]);
     }
-  return dp[n][m];
 }
 void print_LCS(int i,int j){
   if(!i||!j);
