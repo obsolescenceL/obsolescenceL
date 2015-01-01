@@ -16,11 +16,12 @@ int main(){
       scanf("%d",s+i);
       len[i]=1;
     }
-    for(i=0;i<n;i++)
+    int max_len=0;
+    for(i=0;i<n;i++){
       for(j=0;j<i;j++)
         if(s[j]<s[i]) len[i]=max(len[j]+1,len[i]);
-    int max_len=0;
-    for(i=0;i<n;i++)max_len=max(max_len,len[i]);
+      max_len=max(max_len,len[i]);
+    }
     printf("%d\n",max_len);
   }
 }
