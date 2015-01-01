@@ -7,14 +7,14 @@
 #include<cstdio>
 #include<algorithm>
 using namespace std;
-const int MAXN=200;
+const int MAXN=30*6+10;
 struct brick{
   int x,y,z;
 }b[MAXN];
 int sum[MAXN];
 bool cmp(brick a,brick b){
   if(a.x==b.x)return a.y<b.y;
-  return a.x<b.y;
+  return a.x<b.x;
 }
 int main(){
   int n,i,j,x,y,z,k=0;
@@ -38,6 +38,6 @@ int main(){
           sum[i]=max(sum[i],sum[j]+b[i].z);
       max_len=max(max_len,sum[i]);
     }
-    printf("Case %d:maximum height = %d\n",++k,max_len);
+    printf("Case %d: maximum height = %d\n",++k,max_len);
   }
 }
