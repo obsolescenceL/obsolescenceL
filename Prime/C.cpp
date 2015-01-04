@@ -6,9 +6,9 @@
  ************************************************************************/
 #include<cstdio>
 #include<cmath>
-const int MAXN=1000010;
+const int MAXN=1000000;
 bool sieve[MAXN];
-int p[MAXN],k=0;
+int p[MAXN/3],k=0;
 void prime(){
   for(int i=2;i<MAXN;i++){
     if(!sieve[i])p[k++]=i;
