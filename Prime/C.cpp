@@ -5,14 +5,13 @@
     > Created Time: 2015年01月 4日 10:35:44
  ************************************************************************/
 #include<cstdio>
-#include<vector>
-using namespace std;
+#include<cmath>
 const int MAXN=1000010;
 bool sieve[MAXN];
-vector<int> p;
+int p[MAXN],k=0;
 void prime(){
   for(int i=2;i<MAXN;i++){
-    if(!sieve[i])p.push_back(i);
+    if(!sieve[i])p[k++]=i;
     for(int j=0;i*p[j]<MAXN;j++){
       sieve[i*p[j]]=1;
       if(i%p[j]==0)break;
@@ -25,7 +24,7 @@ int main(){
   prime();
   while(~scanf("%lld",&n)){
     if(n<0)break;
-    for(i=0;n>1&&i<p.size();){
+    for(i=0;sqrt(1.0*n)>p[i]&&i<k;){
       if(n%p[i])i++;
       else n/=p[i],printf("    %lld\n",p[i]);
     }
