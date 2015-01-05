@@ -5,7 +5,7 @@
     > Created Time: 2015年01月 5日 12:02:47
  ************************************************************************/
 #include<cstdio>
-const int MAXN=1010;
+const int MAXN=1000;
 bool flag[MAXN];
 int prime[MAXN/3],k=1;
 void sieve(){
@@ -23,7 +23,7 @@ int main(){
   prime[0]=1;
   while(~scanf("%d%d",&n,&c)){
     printf("%d %d:",n,c);
-    for(i=1;prime[i]<=n;i++);
+    for(i=1;prime[i]<=n&&i<k;i++);
     if(c*2>=i){
       for(j=0;j<i;j++)printf(" %d",prime[j]);
       puts("\n");
