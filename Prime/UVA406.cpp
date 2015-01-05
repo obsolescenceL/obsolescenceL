@@ -5,7 +5,7 @@
     > Created Time: 2015年01月 5日 12:02:47
  ************************************************************************/
 #include<cstdio>
-const int MAXN=1000000;
+const int MAXN=1010;
 bool flag[MAXN];
 int prime[MAXN/3],k=1;
 void sieve(){
