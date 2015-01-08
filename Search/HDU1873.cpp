@@ -25,8 +25,7 @@ int main(){
       scanf("%s",op);
       if(strcmp(op,"IN")==0){
         scanf("%d%d",&a,&b.p);
-        b.id=k++;
-        q[a].push(b);
+        q[a].push(node(p,k++));
         //printf("q[%d].size=%d\n",a,q[a].size());
       }else{
         scanf("%d",&a);
