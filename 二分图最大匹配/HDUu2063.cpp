@@ -2,7 +2,7 @@
     > File Name: a.cpp
     > Author: obsolescence
     > Mail: 384099319@qq.com 
-    > Created Time: 2015年01月 9日 16:19:48
+    > Created Time: 2015年01月10日  9:18:37
  ************************************************************************/
 #include<cstdio>
 #include<cstring>
@@ -41,3 +41,4 @@ int main(){
     printf("%d\n",cnt);
   }
 }
+
