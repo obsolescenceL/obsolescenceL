@@ -16,7 +16,7 @@ struct Edge{
   int to;
   Edge* next;
 }*head[3][MAXN],e[3][200010];
-int flag[3],k=1,n,r,top[3];
+int flag,k=1,n,r,top[3];
 
 void Addedge(int from,int to,int k){
   Edge* p=&e[k][top[k]++];
@@ -42,7 +42,7 @@ void Topsort(){
           //printf("v[%d][%d]=%d\n",k,p->to,v[k][p->to]);
         }
     }
-    if(cnt)flag[k]=1;
+    if(cnt)flag=1;
     //printf("flag[%d]=%d\n",k,flag[k]);
   }
 }
@@ -55,7 +55,7 @@ int main(){
     memset(inde,0,sizeof inde);
     memset(v,0,sizeof v);
     memset(top,0,sizeof top);
-    memset(flag,0,sizeof flag);
+    flag=0;
     for(int i=0;i<3;i++)
       for(int j=1;j<=n;j++)
         Addedge(j,j+n,i);
@@ -71,7 +71,7 @@ int main(){
     //puts("Gege");
     }
     Topsort();
-    if(flag[0]||flag[1]||flag[2])printf("Case %d: IMPOSSIBLE\n",k++),puts("");
+    if(flag)printf("Case %d: IMPOSSIBLE\n",k++),puts("");
     else{
       printf("Case %d: POSSIBLE\n",k++);
       for(int i=1;i<=n;i++)
