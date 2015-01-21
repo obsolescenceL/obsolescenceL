@@ -9,6 +9,7 @@
 #include<cstdio>
 #include<string>
 #include<iostream>
+#include<algorithm>
 using namespace std;
   
 int main(){
@@ -17,14 +18,11 @@ int main(){
   int n,i,j,change,cnt,max_cnt;
   string s,ss;
   while(~scanf("%d",&n)){
-    ss.clear();
     cin>>ss;
     //cout<<ss<<endl;
-    max_cnt=0;
-    for(i=0;i<n;i++){
+    for(i=0,max_cnt=0;i<n;i++){
       s=ss;
-      change=cnt=0;
-      for(j=i;change<2;j++){
+      for(j=i,change=cnt=0;change<2;j++){
         if(j==n)j=0;
         if(s[j]=='w')s[j]=s[j+1];
         if(j==n-1&&s[0]=='w')s[0]=s[j];
@@ -36,7 +34,7 @@ int main(){
       }
       //cout<<endl;
       //printf("cnt=%d\n",cnt);
-      if(cnt>max_cnt)max_cnt=cnt;
+      max_cnt=max(max_cnt,cnt);
       if(max_cnt>=n)break;
     }
     if(max_cnt>=n)printf("%d\n",n);
