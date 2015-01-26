@@ -7,12 +7,11 @@
  ************************************************************************/
 #include<cstdio>
 #include<cstring>
-using namespace std;
 int p[12]={2,3,5,7,11,13,17,19,23,29,31,37},n;
 bool vis[30];
 int a[30];
 
-bool isprime(const int &depth,const int &i){
+inline bool isprime(const int &depth,const int &i){
   for(int j=0;j<12;j++)
     if(a[depth]+i==p[j])return 1;
   return 0;
