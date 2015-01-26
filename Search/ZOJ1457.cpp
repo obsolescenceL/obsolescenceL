@@ -7,19 +7,30 @@
  ************************************************************************/
 #include<cstdio>
 #include<cstring>
+#include<cmath>
 int p[12]={2,3,5,7,11,13,17,19,23,29,31,37},n;
 bool vis[30];
 int a[30];
 
 inline bool isprime(const int &depth,const int &i){
-  for(int j=0;j<12;j++)
-    if(a[depth]+i==p[j])return 1;
+  int j;
+  if(a[depth]+i>p[5]){
+    for(j=6;j<12;j++)if(a[depth]+i==p[j])return 1;
+  }else if(a[depth]+i==p[5])return 1;
+  else for(j=4;j>=0;j--)if(a[depth]+i==p[j])return 1;
   return 0;
+//  for(int j=0;j<12;j++)
+//    if(a[depth]+i==p[j])return 1;
+//  return 0;
+//  int sum=a[depth]+i;
+//  for(int j=2;j<=sqrt(sum);j++)
+//    if(sum%j==0)return 0;
+//  return 1;
 }
 
 void dfs(int depth){
   for(int i=2;i<=n;i++){
-    if(!isprime(depth-1,i) || vis[i])continue;
+    if(!isprime(depth-1,i) || vis[i] || (a[depth-1]+i)%2==0)continue;
     vis[i]=1,a[depth]=i;
     dfs(depth+1);
     vis[i]=0;
