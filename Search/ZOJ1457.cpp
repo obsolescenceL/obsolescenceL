@@ -8,29 +8,24 @@
 #include<cstdio>
 #include<cstring>
 #include<cmath>
-int p[12]={2,3,5,7,11,13,17,19,23,29,31,37},n;
-bool vis[30];
+int p[15],n;
+bool vis[30],flag[40];
 int a[30];
 
-inline bool isprime(const int &depth,const int &i){
-  int j;
-  if(a[depth]+i>p[5]){
-    for(j=6;j<12;j++)if(a[depth]+i==p[j])return 1;
-  }else if(a[depth]+i==p[5])return 1;
-  else for(j=4;j>=0;j--)if(a[depth]+i==p[j])return 1;
-  return 0;
-//  for(int j=0;j<12;j++)
-//    if(a[depth]+i==p[j])return 1;
-//  return 0;
-//  int sum=a[depth]+i;
-//  for(int j=2;j<=sqrt(sum);j++)
-//    if(sum%j==0)return 0;
-//  return 1;
+void sieve(){
+  int i,j,k=1;
+  for(i=2;i<=37;i++){
+    if(!flag[i])p[k++]=i;
+    for(j=1;i*p[j]<=37;j++){
+      flag[i*p[j]]=1;
+      if(i%p[j]==0)break;
+    }
+  }
 }
 
 void dfs(int depth){
   for(int i=2;i<=n;i++){
-    if(!isprime(depth-1,i) || vis[i] || (a[depth-1]+i)%2==0)continue;
+    if(flag[a[depth-1]+i] || vis[i] || (a[depth-1]+i)%2==0)continue;
     vis[i]=1,a[depth]=i;
     dfs(depth+1);
     vis[i]=0;
@@ -38,15 +33,15 @@ void dfs(int depth){
   if(depth==n)
     for(int i=2;i<=n;i++){
       if(vis[i])continue;
-      if(isprime(depth-1,i)&&isprime(1,i)){
-        for(int i=1;i<n;i++)printf("%d ",a[i]);
-        printf("%d\n",a[n]);
-      }
+      if(flag[a[depth-1]+i]||flag[1+i])continue;
+      for(int i=1;i<n;i++)printf("%d ",a[i]);
+      printf("%d\n",a[n]);
     }
 }
 
 int main(){
   int k=1;
+  sieve();
   while(~scanf("%d",&n)){
     memset(vis,0,sizeof vis);
     printf("Case %d:\n",k++);
