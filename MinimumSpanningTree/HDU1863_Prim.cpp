@@ -17,7 +17,7 @@ int n,m;
 void Prim(){
   int i,sum=0;
   memset(vis,0,sizeof vis);
-  for(i=1;i<=m;i++) d[i]=1e9;
+  memset(d,0x3F,sizeof d);
   d[1]=0;
   for(i=0;i<m;i++){
     int a=-1,minn=1e9;
@@ -43,8 +43,7 @@ int main(){
     memset(adj,0,sizeof adj);
     for(int i=0;i<n;i++){
       scanf("%d%d%d",&a,&b,&c);
-      adj[a][b]=c;
-      adj[b][a]=c;
+      adj[a][b]=c, adj[b][a]=c;
     }
     Prim();
   }
