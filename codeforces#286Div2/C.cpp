@@ -6,9 +6,7 @@
      Created Time: 2015年01月28日  0:52:10
  ************************************************************************/
 #include<cstdio>
-#include<iostream>
-using namespace std;
-const int MAXN=310;
+const int MAXN=610;
 int m,t,r,c[MAXN],g[MAXN],x,i,j,k,flag=1,cnt;
 bool vis[MAXN];
 int main(){
