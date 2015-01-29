@@ -23,8 +23,7 @@ int main(){
     for(i=0;i<n;++i)
       scanf("%d%d",&pro[i].start,&pro[i].end);
     sort(pro,pro+n);
-    cnt=1;
-    for(i=1,k=0;i<n;++i){
+    for(i=1,cnt=1,k=0;i<n;++i){
       //printf("pro[%d].start=%d,pro[%d].end=%d\n",i,pro[i].start,i-1,pro[i-1].end);
       if(pro[i].start>=pro[k].end)k=i,cnt++;
     }
