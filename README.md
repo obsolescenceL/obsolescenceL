@@ -2,6 +2,7 @@
 
 
 
+
 mkdir tmp #创建tmp目录
 cd tmp #切换到tmp目录
 git init #创建并初始化git库
