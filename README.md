@@ -1,4 +1,4 @@
-![](https://github.com/Accoral/obsolescenceL/raw/blob/master/oo.jpeg)
+![](https://raw.githubusercontent.com/Accoral/obsolescenceL/master/oo.jpeg)
 #yi ji
     >创建密钥:http://www.blogways.net/blog/2013/04/10/generating-ssh-keys-4-github.html
     mkdir tmp #创建tmp目录
