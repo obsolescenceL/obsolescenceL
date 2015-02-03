@@ -4,6 +4,7 @@
 ###三级标题
 ####四级标题
 
+* 下面是我使用到的一些命令；
     >创建密钥:http://www.blogways.net/blog/2013/04/10/generating-ssh-keys-4-github.html
     >引用
     >引用。。。
@@ -29,4 +30,7 @@
     git pull origin master
     git config --global github.token 
     ~~
-    [Insist学姐的博客](http://blog.csdn.net/u011346442)
+[Insist学姐的博客](http://blog.csdn.net/u011346442)
+
+
+
