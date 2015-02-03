@@ -17,5 +17,5 @@ git remote add origin https://github.com/howard5888/mfjc.git
 #将远程git库下载到本地
 git pull origin master
 
-
+git config --global github.token 
 ~~
