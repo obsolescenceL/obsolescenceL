@@ -17,10 +17,8 @@ int main(){
     int maxh=0,pos;
     for(i=0;i<n;++i){
       scanf("%d",h+i);
-      //if(h[i]>maxh)maxh=h[i],pos=i;
     }
-    dpl[0]=0;
-    dpr[n-1]=n-1;
+    dpl[0]=0,dpr[n-1]=n-1;
     for(i=1;i<n;++i){
       pos=i;
       while(pos>0&&h[i]<=h[pos-1])pos=dpl[pos-1];
@@ -33,24 +31,8 @@ int main(){
     }
     long long maxs=0;
     for(i=0;i<n;++i){
-//      int dpl=0,dpr=0;
-//      for(j=i+1;j<n;++j)
-//        if(h[j]>=h[i])dpl[i]++;
-//        else break;
-//      for(j=i-1;j>=0;--j)
-//        if(h[j]>=h[i])dpr[i]++;
-//        else break;
       maxs=max(maxs,h[i]*(dpr[i]+1-dpl[i]));
     }
-//    for(i=1;i<=n;++i){
-//      long long minh=INF;
-//      for(j=max(0,pos-i/2);j<=min(n-1,pos+(i-1)/2);++j){
-//        if(!h[j])break;
-//        minh=min(minh,h[j]);
-//        maxs=max(maxs,(j+1-pos+i/2)*minh);
-//      }
-//      if(!minh)break;
-//    }
     printf("%lld\n",maxs);
   }
 }
