@@ -31,7 +31,7 @@ int main(){
     for(i=1;i<=n;++i)
       for(j=1;j<=m;++j){
         scanf("%d",&mp);
-        if(!mp)mark[i]+=(1<<(j-1));
+        if(!mp)mark[i]|=(1<<(j-1));
       }
     for(i=1;i<=top;++i){
       num[i]=count(state[i]);
@@ -48,14 +48,14 @@ int main(){
             if(state[t]&state[k])continue;
             if(state[j]&(state[k]<<1))continue;
             if(state[j]&(state[k]>>1))continue;
-            if(dp[(i-1)%2][j][k]==-1)continue;
-            dp[i%2][t][j]=max(dp[i%2][t][j],dp[(i-1)%2][j][k]+num[t]);
+            if(dp[(i-1)&1][j][k]==-1)continue;
+            dp[i&1][t][j]=max(dp[i&1][t][j],dp[(i-1)&1][j][k]+num[t]);
           }
         }
       }
     for(j=1;j<=top;++j)
       for(k=1;k<=top;++k)
-        ans=max(ans,dp[n%2][j][k]);
+        ans=max(ans,dp[n&1][j][k]);
     printf("%d\n",ans);
   }
 }
