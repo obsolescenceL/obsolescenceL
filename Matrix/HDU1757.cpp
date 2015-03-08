@@ -21,13 +21,11 @@ void init(){
 
 Matrix operator * (Matrix mat1,Matrix mat2){
   Matrix ans;
-  //memset(ans.mat,0,sizeof Matrix);
+  memset(ans.mat,0,sizeof ans.mat);
   for(int i=0;i<n;++i)
-    for(int j=0;j<n;++j){
-      ans.mat[i][j]=0;
+    for(int j=0;j<n;++j)
       for(int k=0;k<n;++k)
         ans.mat[i][j]=(ans.mat[i][j]+mat1.mat[i][k]*mat2.mat[k][j])%mod;
-    }
   return ans;
 }
 
