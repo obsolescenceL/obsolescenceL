@@ -38,15 +38,6 @@ Matrix operator ^ (Matrix mat1,int x){
   return ans;
 }
 
-Matrix operator + (Matrix mat1,Matrix mat2){
-  Matrix ans;
-  //memset(ans.mat,0,sizeof Matrix);
-  for(int i=0;i<n;++i)
-    for(int j=0;j<n;++j)
-      ans.mat[i][j]=(mat1.mat[i][j]+mat2.mat[i][j])%mod;
-  return ans;
-}
-
 int main(){
   int k,i,a[M];
   init();
