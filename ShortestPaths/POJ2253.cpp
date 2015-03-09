@@ -26,13 +26,9 @@ int main(){
         dis[i][j]=dis[j][i]=sqrt(pow((x[i]-x[j]),2)+pow((y[i]-y[j]),2));
     }
     for(k=0;k<n;++k)
-      for(i=0;i<n;++i){
-        if(i==k)continue;
-        for(j=0;j<n;++j){
-          if(i==j||k==j)continue;
+      for(i=0;i<n;++i)
+        for(j=0;j<n;++j)
           dis[i][j]=Min(dis[i][j],Max(dis[i][k],dis[k][j]));
-        }
-      }
-    printf("Scenario #%d\nFrog Distance = %.3f\n\n",++t,dis[1][0]);
+    printf("Scenario #%d\nFrog Distance = %.3f\n\n",++t,dis[0][1]);//***
   }
 }
