@@ -34,7 +34,7 @@ int main(){
     for(i=0;i<1001;++i)s[i].clear();
     if(k==1)s[0]+=p;
     getline(cin,ss);
-    int cnt=0,pos=0;
+    int cnt=0;
     for(i=0;ss[i];++i){
       if(ss[i]==' '){
         cnt++;
