@@ -43,7 +43,6 @@ int main(){
       s[cnt]+=ss[i];
       //cout<<"s["<<cnt<<"]="<<s[cnt]<<endl;
     }
-    //if(cnt)
     reverse(s,s+cnt+1);
     cout<<"Case #"<<k<<":";
     for(i=0;i<=cnt;++i)cout<<' '<<s[i];
