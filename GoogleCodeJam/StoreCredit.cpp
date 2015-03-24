@@ -1,10 +1,9 @@
 /*************************************************************************
-     File Name: StoreCredit_small.cpp
+     File Name: StoreCredit_large.cpp
      ID: obsoles1
-     PROG: 
      LANG: C++ 
      Mail: 384099319@qq.com 
-     Created Time: 2015年03月23日 星期一 15时08分50秒
+     Created Time: 2015年03月23日 星期一 15时09分16秒
  ************************************************************************/
 #include<cstdio>
 #include<cstring>
@@ -16,7 +15,7 @@
 #include<cmath>
 #include<cctype>
 using namespace std;
-int p[110];
+int p[2001];
 
 int main(){
   int n,c,t,k,i,j,x,y;
