@@ -11,21 +11,20 @@
 #include<algorithm>
 #include<map>
 #include<queue>
-#include<stack>
 #include<cmath>
 #include<cctype>
 #include<ctime>
 #include<cstdlib>
 #include<string>
 using namespace std;
-string s,s1,s2;
+string s,s1;
 map<string,int> mp;
 
 int main(){
   int t,n,m,i,j;
   ios::sync_with_stdio(0);
   while(cin>>t){
-    for(int k=1;k<=t;++k){
+    for(int ncase=1;ncase<=t;++ncase){
       cin>>n>>m;
       mp.clear();
       for(i=0;i<n;++i){
@@ -43,26 +42,26 @@ int main(){
       }
       int cnt=0;
       for(i=0;i<m;++i){
-        cin>>s2;
+        cin>>s1;
         s.clear();
-        s+=s2[0];
-        for(j=1;s2[j];++j){
-          if(s2[j]=='/'){
-            if(!mp[s]){
+        s+=s1[0];
+        for(j=1;s1[j];++j){
+          if(s1[j]=='/'){
+            if(!mp.count(s)){
               cnt++;
               //cout<<s<<endl;
               mp[s]=1;
             }
             //cout<<"cnt="<<cnt<<endl;
           }
-          s+=s2[j];
+          s+=s1[j];
         }
-        if(!mp[s]){
+        if(!mp.count(s)){
           cnt++;
           mp[s]=1;
         }
       }
-      printf("Case #%d: %d\n",k,cnt);
+      printf("Case #%d: %d\n",ncase,cnt);
     }
   }
 }
