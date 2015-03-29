@@ -19,32 +19,31 @@
 #include<vector>
 #include<set>
 using namespace std;
-set<string> myset;
+typedef set<string> SS;
+typedef vector<string> SV;
+#define pb(a) push_back(a)
+SS myset;
 int cnt;
 
-vector<string> split(string s1){
-  vector<string> v;
-  string s;
-  s="/";
+SV split(string s1){
+  SV v;
+  string s="/";
   for(int i=1;s1[i];++i){
     if(s1[i]=='/'){
-      v.push_back(s);
-      //myset.insert(s);
-      //cout<<s<<endl;
+      v.pb(s);
     }
     s+=s1[i];
   }
-  v.push_back(s);
-  //myset.insert(s);
+  v.pb(s);
   return v;
 }
 
-void add(vector<string> v){
+void add(SV v){
   for(int i=0;i<v.size();++i)
     myset.insert(v[i]);
 }
 
-void solve(vector<string> v){
+void solve(SV v){
   for(int i=0;i<v.size();++i){
     if(!myset.count(v[i]))cnt++;
     myset.insert(v[i]);
@@ -61,13 +60,13 @@ int main(){
       myset.clear();
       while(n--){
         cin>>s1;
-        vector<string> v=split(s1);
+        SV v=split(s1);
         add(v);
       }
       cnt=0;
       while(m--){
         cin>>s1;
-        vector<string> v=split(s1);
+        SV v=split(s1);
         solve(v);
       }
       printf("Case #%d: %d\n",ncase,cnt);
