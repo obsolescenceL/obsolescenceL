@@ -60,14 +60,12 @@ int main(){
       myset.clear();
       while(n--){
         cin>>s1;
-        SV v=split(s1);
-        add(v);
+        add(split(s1));
       }
       cnt=0;
       while(m--){
         cin>>s1;
-        SV v=split(s1);
-        solve(v);
+        solve(split(s1));
       }
       printf("Case #%d: %d\n",ncase,cnt);
     }
