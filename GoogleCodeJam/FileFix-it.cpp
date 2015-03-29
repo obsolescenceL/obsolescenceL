@@ -19,12 +19,40 @@
 #include<vector>
 #include<set>
 using namespace std;
-string s,s1;
 set<string> myset;
+int cnt;
 
-//vector
+vector<string> split(string s1){
+  vector<string> v;
+  string s;
+  s="/";
+  for(int i=1;s1[i];++i){
+    if(s1[i]=='/'){
+      v.push_back(s);
+      //myset.insert(s);
+      //cout<<s<<endl;
+    }
+    s+=s1[i];
+  }
+  v.push_back(s);
+  //myset.insert(s);
+  return v;
+}
+
+void add(vector<string> v){
+  for(int i=0;i<v.size();++i)
+    myset.insert(v[i]);
+}
+
+void solve(vector<string> v){
+  for(int i=0;i<v.size();++i){
+    if(!myset.count(v[i]))cnt++;
+    myset.insert(v[i]);
+  }
+}
 
 int main(){
+  string s1;
   int t,n,m,i,j;
   ios::sync_with_stdio(0);
   while(cin>>t){
@@ -33,33 +61,14 @@ int main(){
       myset.clear();
       while(n--){
         cin>>s1;
-        s.clear();
-        s+=s1[0];
-        for(j=1;s1[j];++j){
-          if(s1[j]=='/'){
-            myset.insert(s);
-            //cout<<s<<endl;
-          }
-          s+=s1[j];
-        }
-        myset.insert(s);
+        vector<string> v=split(s1);
+        add(v);
       }
-      int cnt=0;
+      cnt=0;
       while(m--){
         cin>>s1;
-        s.clear();
-        s+=s1[0];
-        for(j=1;s1[j];++j){
-          if(s1[j]=='/'){
-            if(!myset.count(s)) cnt++;
-              //cout<<s<<endl;
-            myset.insert(s);
-            //cout<<"cnt="<<cnt<<endl;
-          }
-          s+=s1[j];
-        }
-        if(!myset.count(s)) cnt++;
-        myset.insert(s);
+        vector<string> v=split(s1);
+        solve(v);
       }
       printf("Case #%d: %d\n",ncase,cnt);
     }
