@@ -16,10 +16,13 @@
 #include<ctime>
 #include<cstdlib>
 #include<string>
+#include<vector>
 #include<set>
 using namespace std;
 string s,s1;
 set<string> myset;
+
+//vector
 
 int main(){
   int t,n,m,i,j;
@@ -28,7 +31,7 @@ int main(){
     for(int ncase=1;ncase<=t;++ncase){
       cin>>n>>m;
       myset.clear();
-      for(i=0;i<n;++i){
+      while(n--){
         cin>>s1;
         s.clear();
         s+=s1[0];
@@ -42,25 +45,21 @@ int main(){
         myset.insert(s);
       }
       int cnt=0;
-      for(i=0;i<m;++i){
+      while(m--){
         cin>>s1;
         s.clear();
         s+=s1[0];
         for(j=1;s1[j];++j){
           if(s1[j]=='/'){
-            if(!myset.count(s)){
-              cnt++;
+            if(!myset.count(s)) cnt++;
               //cout<<s<<endl;
-              myset.insert(s);
-            }
+            myset.insert(s);
             //cout<<"cnt="<<cnt<<endl;
           }
           s+=s1[j];
         }
-        if(!myset.count(s)){
-          cnt++;
-          myset.insert(s);
-        }
+        if(!myset.count(s)) cnt++;
+        myset.insert(s);
       }
       printf("Case #%d: %d\n",ncase,cnt);
     }
