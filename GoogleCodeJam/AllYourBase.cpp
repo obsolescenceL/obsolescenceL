@@ -12,7 +12,6 @@
 #include<map>
 #include<queue>
 #include<stack>
-#include<cmath>
 #include<cctype>
 #include<ctime>
 #include<cstdlib>
@@ -20,6 +19,15 @@
 using namespace std;
 string s;
 map<char,int> mp;
+
+long long pow(int x,int k){
+  long long ans=1;
+  for(;k;k>>=1){
+    if(k&1)ans*=x;
+    x*=x;
+  }
+  return ans;
+}
 
 int main(){
   int t,i,k;
@@ -44,7 +52,7 @@ int main(){
       k=max(2,k);
       for(i=0;s[i];++i){
         //cout<<"ans="<<ans<<endl;
-        ans+=mp[s[i]]*pow(k,s.size()-i-1);
+        ans+=(long long)mp[s[i]]*pow(k,s.size()-i-1);
       }
       if(ans==1)ans=0;
       cout<<"Case #"<<nc<<": "<<ans<<'\n';
