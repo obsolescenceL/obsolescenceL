@@ -32,8 +32,8 @@ long long pow(long long x,int k){
 }
 
 int main(){
-  int t,i;
-  long long ans,k;
+  int t,i,k;
+  long long ans;
   ios::sync_with_stdio(0);
   while(cin>>t){
     for(int nc=1;nc<=t;++nc){
@@ -51,7 +51,7 @@ int main(){
           k++;
         }
       //cout<<'\n';
-      if(k==1)k=2;
+      k=max(2,k);
       //cout<<s.size()<<endl;
       for(i=0;s[i];++i){
         ans+=(long long)mp[s[i]]*pow(k,s.size()-i-1);
