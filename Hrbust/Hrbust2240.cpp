@@ -20,7 +20,7 @@
 using namespace std;
 const int M=200001;
 struct Node{
-  int pre,money;
+  int pre,money;//pre代表父亲，money代表节点比根节点少多少钱
 }node[M];
 
 int find(int x){
@@ -52,8 +52,8 @@ int main(){
       }else{
         scanf("%d%d",&a,&b);
         int fa=find(a),fb=find(b);
-        if(fa!=fb)puts("?");
-        else printf("%d\n",node[b].money-node[a].money);
+        if(fa!=fb)puts("?");//如果不在一个集合，说明无法比较
+        else printf("%d\n",node[b].money-node[a].money);//输出的是都与根节点比较的差值
       }
       //for(i=1;i<=2*n;++i)cout<<"node["<<i<<"].pre="<<node[i].pre<<" money="<<node[i].money<<endl;
     }
