@@ -25,8 +25,9 @@ struct Node{
 
 int find(int x){
   if(x!=node[x].pre){
+    int pre=node[x].pre;
     node[x].pre=find(node[x].pre);
-    node[x].money+=node[node[x].pre].money;
+    node[x].money+=node[pre].money;
   }
   return node[x].pre;
 }
