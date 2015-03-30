@@ -36,7 +36,7 @@ void Union(int x,int y,int m){
   int fx=find(x),fy=find(y);
   if(fx!=fy){
     node[fy].pre=fx;
-    node[fy].money=node[fx].money+m-node[fy].money;
+    node[fy].money=node[x].money+m-node[y].money;
   }
 }
 
