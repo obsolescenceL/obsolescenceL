@@ -20,18 +20,20 @@ using namespace std;
 string s;
 map<char,int> mp;
 
-long long pow(int x,int k){
+long long pow(long long x,int k){
+  //cout<<"x="<<x<<" k="<<k<<endl;
   long long ans=1;
   for(;k;k>>=1){
     if(k&1)ans*=x;
     x*=x;
   }
+  //cout<<"pow="<<ans<<endl;
   return ans;
 }
 
 int main(){
-  int t,i,k;
-  long long ans;
+  int t,i;
+  long long ans,k;
   ios::sync_with_stdio(0);
   while(cin>>t){
     for(int nc=1;nc<=t;++nc){
@@ -49,12 +51,14 @@ int main(){
           k++;
         }
       //cout<<'\n';
-      k=max(2,k);
+      if(k==1)k=2;
+      //cout<<s.size()<<endl;
       for(i=0;s[i];++i){
-        //cout<<"ans="<<ans<<endl;
         ans+=(long long)mp[s[i]]*pow(k,s.size()-i-1);
+        //cout<<"ans="<<ans<<endl;
+        //cout<<s[i]<<endl;
       }
-      if(ans==1)ans=0;
+      //if(ans==1)ans=0;
       cout<<"Case #"<<nc<<": "<<ans<<'\n';
     }
   }
