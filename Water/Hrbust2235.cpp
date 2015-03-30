@@ -26,18 +26,8 @@ int main(){
   while(~scanf("%d",&t)){
     while(t--){
       scanf("%d%d%d",&n,&k,&m);
-      //cout<<n<<' '<<k<<' '<<m<<endl;
       p[1]=1;
       for(int i=2;i<=n;++i)p[i]=p[i-1]+((i-1)*k)%m;
-      //for(int i=1;i<=n;++i)cout<<"p["<<i<<"]="<<p[i]<<endl;
-      /*
-      while(n!=1){
-        p[1]=2*sqrt(p[1]*p[n]);
-        //cout<<p[1]<<endl;
-        n--;
-        sort(p+1,p+1+n);
-      }
-      */
       for(int i=n-1;i;--i){
         p[i]=2*sqrt(p[i]*p[i+1]);
       }
