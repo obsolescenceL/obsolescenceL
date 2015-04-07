@@ -36,27 +36,28 @@ struct Transfer{
   bool flag;
 }trans[30];
 
-struct node{
+struct status{
   int x,y,step;
 }s;
 
 void bfs(){
-  queue<node> q;
+  memset(vis,0,sizeof vis);
+  queue<status> q;
   q.push(s);
   vis[s.x][s.y]=1;
   bool flag=1;
-  int min_step=INF,i;
+  int ans,i;
   while(!q.empty()){
     s=q.front();
     q.pop();
-    node t;
+    status t;
     for(i=0;i<4;++i){
       t.x=s.x+mx[i],t.y=s.y+my[i],t.step=s.step+1;
-      if(t.x>=0&&t.y>=0&&t.x<n&&t.y<m&&mp[t.x][t.y]!='#'&&!vis[t.x][t.y]){
+      if(0<=t.x&&t.x<n&&0<=t.y&&t.y<m&&mp[t.x][t.y]!='#'&&!vis[t.x][t.y]){
         vis[t.x][t.y]=1;
-        if(mp[t.x][t.y]=='Q'){
+        if(mp[t.x][t.y]=='Q'&&flag){
           flag=0;
-          min_step=Min(min_step,t.step);
+          ans=t.step;
         }else if(mp[t.x][t.y]!='.'){
           int x=mp[t.x][t.y]-'a';
           if(trans[x].x1==t.x&&trans[x].y1==t.y){
@@ -72,7 +73,7 @@ void bfs(){
     }
   }
   if(flag)puts("-1");
-  else printf("%d\n",min_step);
+  else printf("%d\n",ans);
 }
 
 int main(){
@@ -81,14 +82,13 @@ int main(){
   while(cin>>t){
     while(t--){
       memset(trans,0,sizeof trans);
-      memset(vis,0,sizeof vis);
       cin>>n>>m;
       for(i=0;i<n;++i)cin>>mp[i];
       for(i=0;i<n;++i)
         for(j=0;j<m;++j){
           int x=mp[i][j]-'a';
           if(mp[i][j]=='L')s.x=i,s.y=j,s.step=0;
-          else if(x>=0&&x<26){
+          else if(0<=x&&x<26){
             if(trans[x].flag)trans[x].x2=i,trans[x].y2=j;
             else trans[x].x1=i,trans[x].y1=j,trans[x].flag=1;
           }
