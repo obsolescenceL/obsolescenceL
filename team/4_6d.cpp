@@ -36,21 +36,20 @@ struct Transfer{
   bool flag;
 }trans[30];
 
-struct status{
+struct Status{
   int x,y,step;
-}s;
+}s,t;
 
 void bfs(){
   memset(vis,0,sizeof vis);
-  queue<status> q;
+  queue<Status> q;
   q.push(s);
   vis[s.x][s.y]=1;
   bool flag=1;
-  int ans,i;
+  int ans,i,x;
   while(!q.empty()&&flag){
     s=q.front();
     q.pop();
-    status t;
     for(i=0;i<4;++i){
       t.x=s.x+mx[i],t.y=s.y+my[i],t.step=s.step+1;
       if(0<=t.x&&t.x<n&&0<=t.y&&t.y<m&&mp[t.x][t.y]!='#'&&!vis[t.x][t.y]){
@@ -60,7 +59,7 @@ void bfs(){
           ans=t.step;
           break;
         }else if(mp[t.x][t.y]!='.'){
-          int x=mp[t.x][t.y]-'a';
+          x=mp[t.x][t.y]-'a';
           if(trans[x].x1==t.x&&trans[x].y1==t.y){
             t.x=trans[x].x2;
             t.y=trans[x].y2;
@@ -78,7 +77,7 @@ void bfs(){
 }
 
 int main(){
-  int t,i,j;
+  int t,i,j,x;
   ios::sync_with_stdio(0);
   while(cin>>t){
     while(t--){
@@ -87,7 +86,7 @@ int main(){
       for(i=0;i<n;++i)cin>>mp[i];
       for(i=0;i<n;++i)
         for(j=0;j<m;++j){
-          int x=mp[i][j]-'a';
+          x=mp[i][j]-'a';
           if(mp[i][j]=='L')s.x=i,s.y=j,s.step=0;
           else if(0<=x&&x<26){
             if(trans[x].flag)trans[x].x2=i,trans[x].y2=j;
