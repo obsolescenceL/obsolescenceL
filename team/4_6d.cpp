@@ -38,7 +38,7 @@ struct Transfer{
 
 struct node{
   int x,y,step;
-}s,e;
+}s;
 
 void bfs(){
   queue<node> q;
@@ -52,23 +52,22 @@ void bfs(){
     node t;
     for(i=0;i<4;++i){
       t.x=s.x+mx[i],t.y=s.y+my[i],t.step=s.step+1;
-      if(t.x<0||t.y<0)continue;
-      //if(t.x>=n||t.y>=m)continue;
-      if(t.x<n&&t.y<m)cout<<"t.x="<<t.x<<" t.y="<<t.y<<" t.step="<<t.step<<endl;
-      cout<<"vis[t.x][t.y]="<<vis[t.x][t.y]<<endl;
       if(t.x>=0&&t.y>=0&&t.x<n&&t.y<m&&mp[t.x][t.y]!='#'&&!vis[t.x][t.y]){
-      cout<<"mp[t.x][t.y]="<<mp[t.x][t.y]<<endl;
         vis[t.x][t.y]=1;
         if(mp[t.x][t.y]=='Q'){
           flag=0;
           min_step=Min(min_step,t.step);
         }else if(mp[t.x][t.y]!='.'){
-          int x=mp[t.x][t.y]='a';
-          if(trans[x].x1==t.x&&trans[x].y1==t.y)t.x=trans[x].x2,t.y=trans[x].y2;
-          else t.x=trans[x].x1,t.y=trans[x].y1;
+          int x=mp[t.x][t.y]-'a';
+          if(trans[x].x1==t.x&&trans[x].y1==t.y){
+            t.x=trans[x].x2;
+            t.y=trans[x].y2;
+          }else{
+            t.x=trans[x].x1;
+            t.y=trans[x].y1;
+          }
         }
         q.push(t);
-        cout<<"t.x="<<t.x<<" t.y="<<t.y<<" t.step="<<t.step<<endl;
       }
     }
   }
@@ -77,24 +76,23 @@ void bfs(){
 }
 
 int main(){
-  int t,n,m,i,j;
+  int t,i,j;
   ios::sync_with_stdio(0);
   while(cin>>t){
     while(t--){
       memset(trans,0,sizeof trans);
       memset(vis,0,sizeof vis);
       cin>>n>>m;
-      cout<<"n="<<n<<" m="<<m<<endl;
       for(i=0;i<n;++i)cin>>mp[i];
       for(i=0;i<n;++i)
-        for(j=0;j<m;++j)
+        for(j=0;j<m;++j){
+          int x=mp[i][j]-'a';
           if(mp[i][j]=='L')s.x=i,s.y=j,s.step=0;
-          //else if(mp[i][j]=='Q')e.x=i,e.y=j;
-          else if(mp[i][j]!='.'&&mp[i][j]!='#'){
-            int x=mp[i][j]-'a';
+          else if(x>=0&&x<26){
             if(trans[x].flag)trans[x].x2=i,trans[x].y2=j;
             else trans[x].x1=i,trans[x].y1=j,trans[x].flag=1;
           }
+        }
       bfs();
     }
   }
