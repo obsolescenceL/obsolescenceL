@@ -47,7 +47,7 @@ void bfs(){
   vis[s.x][s.y]=1;
   bool flag=1;
   int ans,i;
-  while(!q.empty()){
+  while(!q.empty()&&flag){
     s=q.front();
     q.pop();
     status t;
@@ -58,6 +58,7 @@ void bfs(){
         if(mp[t.x][t.y]=='Q'&&flag){
           flag=0;
           ans=t.step;
+          break;
         }else if(mp[t.x][t.y]!='.'){
           int x=mp[t.x][t.y]-'a';
           if(trans[x].x1==t.x&&trans[x].y1==t.y){
@@ -72,8 +73,8 @@ void bfs(){
       }
     }
   }
-  if(flag)puts("-1");
-  else printf("%d\n",ans);
+  if(flag)cout<<"-1\n";
+  else cout<<ans<<'\n';
 }
 
 int main(){
