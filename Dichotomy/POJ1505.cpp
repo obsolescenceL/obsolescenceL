@@ -65,7 +65,7 @@ int main(){
     for(i=n-1;i>=0;){
       if(temp+num[i]>sum){
         cnt++;
-        temp=0,sum=0;
+        temp=sum=0;
         for(j=k-1-cnt;j<=i;++j)sum+=num[j];
         sum=Min(sum,ans);
         continue;
