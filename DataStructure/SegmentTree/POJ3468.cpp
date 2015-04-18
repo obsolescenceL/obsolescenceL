@@ -83,7 +83,7 @@ inline ll query(int t,int L,int R,int l,int r){
 }
 
 int main(){
-  int n,q,i,l,r,c;
+  int n,q,l,r,c;
   char op[4];
   while(~scanf("%d%d",&n,&q)){
     build(1,1,n);
