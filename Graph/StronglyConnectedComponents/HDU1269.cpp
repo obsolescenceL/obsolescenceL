@@ -42,7 +42,8 @@ inline void Tarjan(int from){
   }
   if(dfn[from]==low[from]){
     do{
-      to=st[s_top--];
+      to=st[s_top];
+      st[s_top--]=0;
       inst[to]=0;
     }while(to!=from);
     s_cnt++;
