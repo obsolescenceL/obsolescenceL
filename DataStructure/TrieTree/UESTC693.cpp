@@ -28,7 +28,7 @@ void search(){
   Tree *p;
   for(i=0;s[i];++i,cnt=0){//枚举所有的串
     p=&root;//重新建树
-    for(j=i;;++j){
+    for(j=i;;++j,p=p->next[x]){
       x=s[j]-'a';
       if(mark[x]=='0')cnt++;//如果标记为0,则长度加一
       if(cnt>k||!s[j])break;//出口
@@ -36,7 +36,6 @@ void search(){
         ans++;//找到一个新的串
         p->next[x]=creatNew();
       }
-      p=p->next[x];
     }
   }
 }
