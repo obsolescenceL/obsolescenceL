@@ -27,7 +27,7 @@ void search(){
   int i,j,x,cnt=0;
   Tree *p;
   for(i=0;s[i];++i,cnt=0){//枚举所有的串
-    p=&root;//重新建树
+    p=&root;//重回根
     for(j=i;;++j,p=p->next[x]){
       x=s[j]-'a';
       if(mark[x]=='0')cnt++;//如果标记为0,则长度加一
