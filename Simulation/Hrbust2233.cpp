@@ -59,7 +59,6 @@ int main(){
             ch[j][l]='-';
         print_ch();
       }
-      //cout<<'\n'<<i<<endl;
     }
     cout<<'\n';
   }
