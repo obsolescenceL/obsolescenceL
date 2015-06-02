@@ -16,15 +16,15 @@ int mz[]={0,0,1,-1,0,0};
 int mx[]={1,-1,0,0,0,0};
 int my[]={0,0,0,0,1,-1},l,r,c;
 bool vis[N][N][N];
-struct stute{
+struct status{
   int z,x,y,step;
-  stute(int _z=0,int _x=0,int _y=0,int _step=0):z(_z),x(_x),y(_y),step(_step){}
+  status(int _z=0,int _x=0,int _y=0,int _step=0):z(_z),x(_x),y(_y),step(_step){}
 }s,e;
 
 void Bfs(){
   int ans=-1,i,z,x,y,step;
-  stute t;
-  queue<stute> q;
+  status t;
+  queue<status> q;
   Mem0(vis);
   vis[s.z][s.x][s.y]=1;
   q.push(s);
@@ -44,7 +44,7 @@ void Bfs(){
       if(mp[z][x][y]=='#')continue;
       if(0>z||z>=l||0>x||x>=r||0>y||y>=c)continue;
       vis[z][x][y]=1;
-      q.push(stute(z,x,y,step));
+      q.push(status(z,x,y,step));
     }
   }
   if(ans==-1)puts("Trapped!");
