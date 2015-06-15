@@ -37,9 +37,9 @@ void build(char *s){
 int main(){
   int n;
   while(~scanf("%d",&n)){
-    maxn=id=0;
-    root=&T[0];
     Mem0(T);
+    maxn=id=0;
+    root=&T[++id];
     while(n--){
       scanf("%s",s);
       build(s);
