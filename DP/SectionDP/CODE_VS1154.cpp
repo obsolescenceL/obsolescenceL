@@ -40,7 +40,6 @@ struct node{
 int main(){
   int n,i,j,k;
   while(~scanf("%d",&n)){
-    //cout<<n<<endl;
     for(i=1;i<=n;++i)
       scanf("%d",temp+i);
     ll maxn=0,nn=n<<1;
@@ -50,7 +49,6 @@ int main(){
     w[n].r=w[1].l=temp[1];
     for(i=2;i<=nn;++i)
       w[i].l=w[i-1].r;
-    //for(i=1;i<nn;++i)cout<<"("<<w[i].l<<","<<w[i].r<<") ";
     for(i=nn-2;i;--i)
       for(j=i+1;j<nn;++j)
         for(k=i;k<j;++k)
