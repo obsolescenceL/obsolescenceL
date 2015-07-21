@@ -75,7 +75,7 @@ int main(){
     ll ans1(0),ans2(1);
     for(i=1;i<=bcc_n;++i){
       int cut_n=0;
-      if(v[i].size()==1 && iscut[v[i][0]])continue;
+      //if(v[i].size()==1 && iscut[v[i][0]])continue;
       for(j=0;j<v[i].size();++j)if(iscut[v[i][j]])cut_n++;
       if(cut_n==1)ans1++,ans2*=(ll)(v[i].size()-cut_n);
     }
