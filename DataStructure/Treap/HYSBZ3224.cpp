@@ -131,7 +131,7 @@ int q_rank(Node *&p,int v,int cur){
 
 int main(){
   int n,i,op,x;
-  srand(time(0));
+  srand(time(0));//HYSBZ不支持此函数
   scanf("%d",&n);
   while(n--){
     scanf("%d%d",&op,&x);
