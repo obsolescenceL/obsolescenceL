@@ -131,6 +131,7 @@ int q_rank(Node *&p,int v,int cur){
 
 int main(){
   int n,i,op,x;
+  srand(time(0));
   scanf("%d",&n);
   while(n--){
     scanf("%d%d",&op,&x);
