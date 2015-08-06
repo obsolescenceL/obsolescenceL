@@ -1,9 +1,9 @@
 /*************************************************************************
-     File Name: HYSBZ3224.cpp
+     File Name: HYSBZ1208.cpp
      ID: obsoles1
      LANG: C++ 
      Mail: 384099319@qq.com 
-     Created Time: 2015年08月03日 星期一 10时25分30秒
+     Created Time: 2015年08月04日 星期二 16时20分40秒
  ************************************************************************/
 #include<cstdio>
 #include<cstring>
@@ -29,6 +29,7 @@
 #define Mem1(x) memset(x,-1,sizeof(x))
 #define MemX(x) memset(x,0x3f,sizeof(x))
 #define pb push_back
+const int mod=1000000,INF=0x3f3f3f3f;
 using namespace std;
 struct treap{
   treap *l,*r;
@@ -40,6 +41,7 @@ struct treap{
   int r_size(){return r? r->size:0;}
   void merger(){size=w;size+=l_size()+r_size();}
 }*root;
+int maxv,minv;
 
 void l_rotate(treap *&x){
   treap *t=x->r;
@@ -60,17 +62,16 @@ void r_rotate(treap *&x){
 }
 
 void insert(treap *&p,int v){
-  if(!p) p=new treap(v);
+  //cout<<"--------------"<<endl;
+  if(!p)p=new treap(v);
   else{
     if(p->v==v)p->w++;
     else if(p->v > v){
       insert(p->l,v);
-      if(p->l->fix < p->fix)
-        r_rotate(p);
+      if(p->l->fix < p->fix)r_rotate(p);
     }else{
       insert(p->r,v);
-      if(p->r->fix < p->fix)
-        l_rotate(p);
+      if(p->r->fix < p->fix)l_rotate(p);
     }
   }
   p->merger();
@@ -96,45 +97,47 @@ void del(treap *&p,int v){
   if(p)p->merger();
 }
 
-treap *q_pred(treap *&p,int v,treap *optimal){
-  if(!p)return optimal;
-  if(p->v < v)return q_pred(p->r,v,p);
-  else return q_pred(p->l,v,optimal);
-}
-
-treap *q_succ(treap *&p,int v,treap *optimal){
-  if(!p)return optimal;
-  if(p->v > v)return q_succ(p->l,v,p);
-  else return q_succ(p->r,v,optimal);
-}
-
-treap *find_kth(treap *&p,int k){
-  if(k < p->l_size()+1)
-    return find_kth(p->l,k);
-  else if(k > p->l_size()+p->w)
-    return find_kth(p->r,k-(p->l_size()+p->w));
-  else return p;
-}
-
-int q_rank(treap *&p,int v,int cur){
-  if(p->v==v)return p->l_size()+cur+1;
-  else if(p->v > v)return q_rank(p->l,v,cur);
-  else return q_rank(p->r,v,cur+p->l_size()+p->w);
+void find(treap *&p,int v){
+  //cout<<"maxv="<<maxv<<endl;
+  //cout<<"minv="<<minv<<endl;
+  if(!p)return;
+  if(p->v==v){
+    minv=v,maxv=v;return;
+  }else if(p->v > v){
+    maxv=Min(maxv,p->v);
+    find(p->l,v);
+  }else{
+    minv=Max(minv,p->v);
+    find(p->r,v);
+  }
 }
 
 int main(){
-  int n,i,op,x;
-  srand(time(0));//HYSBZ不支持此函数
+  int n,a,b,num=0,ans,sum=0;
   scanf("%d",&n);
   while(n--){
-    scanf("%d%d",&op,&x);
-    switch(op){
-      case 1: insert(root,x);break;
-      case 2: del(root,x);break;
-      case 3: printf("%d\n",q_rank(root,x,0));break;
-      case 4: printf("%d\n",find_kth(root,x)->v);break;
-      case 5: printf("%d\n",q_pred(root,x,0)->v);break;
-      case 6: printf("%d\n",q_succ(root,x,0)->v);break;
+    scanf("%d%d",&a,&b);
+    //cout<<"a="<<a<<" b="<<b<<endl;
+    //cout<<"num="<<num<<endl;
+    if(!num)
+      insert(root,b),num++,ans=a;
+    else if(ans==a)
+      insert(root,b),num++;
+    else{
+      minv=-INF,maxv=INF;
+      find(root,b);
+      num--;
+      int temp1=Abs(b,minv),temp2=Abs(b,maxv);
+      if(temp1<=temp2){
+        sum+=temp1;
+        del(root,minv);
+      }else{
+        sum+=temp2;
+        del(root,maxv);
+      }
+      sum%=mod;
+      //cout<<"sum="<<sum<<endl;
     }
   }
+  printf("%d\n",sum);
 }
