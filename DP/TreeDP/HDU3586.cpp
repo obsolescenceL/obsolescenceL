@@ -47,7 +47,7 @@ void Addedge(int from,int to,int w){
 void dfs(int to,int limit){
   if(vis[to])return;
   vis[to]=1;
-  int i,j,k,tmp=0;
+  int tmp=0;
   bool flag=0;
   for(Edge *p=head[to];p;p=p->next){
     if(!vis[p->to]){
