@@ -1,10 +1,10 @@
 /*************************************************************************
-     File Name: HDU1536.cpp
+     File Name: HDU1079.cpp
      ID: obsoles1
      PROG: 
      LANG: C++ 
      Mail: 384099319@qq.com 
-     Created Time: 2016年01月11日 星期一 13时08分35秒
+     Created Time: 2016年01月16日 星期六 20时29分37秒
  ************************************************************************/
 #include<cstdio>
 #include<cstring>
@@ -31,44 +31,36 @@
 #define MemX(x) memset(x,0x3f,sizeof(x))
 #define pb push_back
 using namespace std;
-const int N=110,M=10010;
-int s[N],sg[M],k;
+int month[]={0,31,28,31,30,31,30,31,31,30,31,30,31};
+int flag[110][20][40];
 
-int sg_dfs(int x){
-  if(sg[x]!=-1)return sg[x];
-  int i,tmp;
-  bool vis[N];
-  Mem0(vis);
-  for(i=0;i<k;++i)
-    if(x>=s[i]){
-      sg_dfs(x-s[i]);
-      vis[sg[x-s[i]]]=1;
-    }
-  for(i=0;;++i)
-    if(!vis[i]){
-      tmp=i;
-      break;
-    }
-  return sg[x]=tmp;
+bool check(int y){
+  return (y%4==0 && y%100) || y%400==0;
 }
 
 int main(){
-  int n,m,i,x;
-  while(~scanf("%d",&k)&&k){
-    Mem1(sg);
-    for(i=0;i<k;++i)scanf("%d",s+i);
-    sort(s,s+k);
-    scanf("%d",&n);
-    while(n--){
-      scanf("%d",&m);
-      int ans=0;
-      while(m--){
-        scanf("%d",&x);
-        ans^=sg_dfs(x);
+  int y,m,d,i,j,k,t;
+  int sy=2001,sm=11,sd=4;
+  int ey=1900;
+  int next=1;
+  for(i=sy-ey;i>=0;--i){
+    if(check(i+ey))month[2]=29;
+    else month[2]=28;
+    if(i!=sy-ey)sm=12;
+    for(j=sm;j>=1;--j){
+      if(i!=sy-ey || j!=11)sd=month[j];
+      for(k=sd;k>=1;--k){
+        if(next==2 || (j!=12 && flag[i][j+1][k]==2) || (j==12 && flag[i+1][1][k]==2))flag[i][j][k]=1;
+        if(next!=2 && ((j!=12 && flag[i][j+1][k]!=2) || (j==12 && flag[i+1][1][k]!=2)))flag[i][j][k]=2;
+        next=flag[i][j][k];
       }
-      if(ans)printf("W");
-      else printf("L");
     }
-    puts("");
+  }
+  while(~scanf("%d",&t)){
+    while(t--){
+      scanf("%d%d%d",&y,&m,&d);
+      if(flag[y-ey][m][d]==1)puts("YES");
+      else puts("NO");
+    }
   }
 }

@@ -1,10 +1,10 @@
 /*************************************************************************
-     File Name: HDU1536.cpp
+     File Name: POJ1704.cpp
      ID: obsoles1
      PROG: 
      LANG: C++ 
      Mail: 384099319@qq.com 
-     Created Time: 2016年01月11日 星期一 13时08分35秒
+     Created Time: 2016年02月04日 星期四 21时31分18秒
  ************************************************************************/
 #include<cstdio>
 #include<cstring>
@@ -31,44 +31,24 @@
 #define MemX(x) memset(x,0x3f,sizeof(x))
 #define pb push_back
 using namespace std;
-const int N=110,M=10010;
-int s[N],sg[M],k;
-
-int sg_dfs(int x){
-  if(sg[x]!=-1)return sg[x];
-  int i,tmp;
-  bool vis[N];
-  Mem0(vis);
-  for(i=0;i<k;++i)
-    if(x>=s[i]){
-      sg_dfs(x-s[i]);
-      vis[sg[x-s[i]]]=1;
-    }
-  for(i=0;;++i)
-    if(!vis[i]){
-      tmp=i;
-      break;
-    }
-  return sg[x]=tmp;
-}
+const int N=1010;
+int num[N];
 
 int main(){
-  int n,m,i,x;
-  while(~scanf("%d",&k)&&k){
-    Mem1(sg);
-    for(i=0;i<k;++i)scanf("%d",s+i);
-    sort(s,s+k);
-    scanf("%d",&n);
-    while(n--){
-      scanf("%d",&m);
-      int ans=0;
-      while(m--){
-        scanf("%d",&x);
-        ans^=sg_dfs(x);
-      }
-      if(ans)printf("W");
-      else printf("L");
+  int t,n,i;
+  while(~scanf("%d",&t)){
+    while(t--){
+      int sum=0;
+      scanf("%d",&n);
+      for(i=0;i<n;++i)
+        scanf("%d",num+i);
+      if(n%2)num[n++]=0;
+      sort(num,num+n);
+      for(i=0;i<n;i+=2)
+        sum^=num[i+1]-num[i]-1;
+        //cout<<"num["<<i-1<<"]="<<num[i-1]<<endl;
+      if(!sum)puts("Bob will win");
+      else puts("Georgia will win");
     }
-    puts("");
   }
 }

@@ -1,10 +1,10 @@
 /*************************************************************************
-     File Name: HDU1536.cpp
+     File Name: HDU1848.cpp
      ID: obsoles1
      PROG: 
      LANG: C++ 
      Mail: 384099319@qq.com 
-     Created Time: 2016年01月11日 星期一 13时08分35秒
+     Created Time: 2016年02月04日 星期四 19时18分03秒
  ************************************************************************/
 #include<cstdio>
 #include<cstring>
@@ -31,44 +31,32 @@
 #define MemX(x) memset(x,0x3f,sizeof(x))
 #define pb push_back
 using namespace std;
-const int N=110,M=10010;
-int s[N],sg[M],k;
+const int N=1010;
+int f[N],sg[N],mex[N];
 
-int sg_dfs(int x){
-  if(sg[x]!=-1)return sg[x];
-  int i,tmp;
-  bool vis[N];
-  Mem0(vis);
-  for(i=0;i<k;++i)
-    if(x>=s[i]){
-      sg_dfs(x-s[i]);
-      vis[sg[x-s[i]]]=1;
-    }
-  for(i=0;;++i)
-    if(!vis[i]){
-      tmp=i;
-      break;
-    }
-  return sg[x]=tmp;
+void get_sg(int n){
+  int i,j;
+  Mem0(sg);
+  for(i=1;i<=n;++i){
+    Mem0(mex);
+    for(j=1;f[j]<=i;++j)mex[sg[i-f[j]]]=1;
+    for(j=0;j<=n;++j)
+      if(!mex[j]){
+        sg[i]=j;
+        break;
+      }
+    //cout<<"-----------"<<endl;
+  }
 }
 
 int main(){
-  int n,m,i,x;
-  while(~scanf("%d",&k)&&k){
-    Mem1(sg);
-    for(i=0;i<k;++i)scanf("%d",s+i);
-    sort(s,s+k);
-    scanf("%d",&n);
-    while(n--){
-      scanf("%d",&m);
-      int ans=0;
-      while(m--){
-        scanf("%d",&x);
-        ans^=sg_dfs(x);
-      }
-      if(ans)printf("W");
-      else printf("L");
-    }
-    puts("");
+  int m,n,p,i;
+  f[0]=f[1]=1;
+  for(i=2;i<=100;++i)
+    f[i]=f[i-1]+f[i-2];
+  get_sg(1000);
+  while(~scanf("%d%d%d",&m,&n,&p)&&(m||n||p)){
+    if(sg[m]^sg[n]^sg[p])puts("Fibo");
+    else puts("Nacci");
   }
 }
