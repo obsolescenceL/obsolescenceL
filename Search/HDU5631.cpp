@@ -35,23 +35,28 @@ const int N=110;
 struct Edge{
   int p1,p2;
 }e[N];
-int pre[N],nn;
+struct edge{
+  int to;
+  edge *next;
+}*head[N],ed[N*2];
+int top;
+bool vis[N];
 
-int find(int x){
-  return x==pre[x]? x:pre[x]=find(pre[x]);
+void Addedge(int from,int to){
+  edge *p=&ed[++top];
+  p->to=to,p->next=head[from],head[from]=p;
 }
 
-void Union(int x,int y){
-  int fx=find(x),fy=find(y);
-  //cout<<"fx="<<fx<<" fy="<<fy<<endl;
-  if(fx!=fy){
-    pre[fx]=fy;
-    nn--;
-  }
+void dfs(int x){
+  for(edge *p=head[x];p;p=p->next)
+    if(!vis[p->to]){
+      vis[p->to]=1;
+      dfs(p->to);
+    }
 }
 
 int main(){
-  int t,n,i,j,k,ans,cnt;
+  int t,n,i,j,k,ans,flag;
   while(~scanf("%d",&t)){
     while(t--){
       ans=0;
@@ -60,13 +65,18 @@ int main(){
         scanf("%d%d",&e[i].p1,&e[i].p2);
       for(i=0;i<=n;++i)
         for(j=i;j<=n;++j){
-          nn=n;
-          for(k=0;k<=n;++k)pre[k]=k;
+          Mem0(head),top=0,flag=1;
           for(k=0;k<=n;++k){
             if(k==i || k==j)continue;
-            Union(e[k].p1,e[k].p2);
+            Addedge(e[k].p1,e[k].p2);
+            Addedge(e[k].p2,e[k].p1);
           }
-          if(nn==1)ans++;
+          Mem0(vis);
+          vis[1]=1;
+          dfs(1);
+          for(k=1;k<=n;++k)
+            if(!vis[k])flag=0;
+          if(flag)ans++;
         }
       printf("%d\n",ans);
     }
