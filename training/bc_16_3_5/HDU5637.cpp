@@ -31,7 +31,7 @@
 #define MemX(x) memset(x,0x3f,sizeof(x))
 #define pb push_back
 using namespace std;
-const int N=200010,mod=1e9+7;
+const int N=140000,mod=1e9+7;
 struct node{
   int cur,step;
 }st,temp;
@@ -45,7 +45,7 @@ void bfs(){
   step[st.cur]=st.step;
   while(!q.empty()){
     st=q.front(),q.pop();
-    for(i=0;i<=17;++i){
+    for(i=0;i<=16;++i){
       temp.cur=st.cur^(1<<i);
       temp.step=st.step+1;
       //cout<<"temp=("<<temp.cur<<','<<temp.step<<')'<<endl;
