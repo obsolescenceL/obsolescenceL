@@ -40,7 +40,7 @@ void search(tree *p,int i,int cnt){
   if(cnt>k||!s[i])return;
   if(!(p->next[x])){
     ans++;
-    temp=(tree *)malloc(sizeof root);
+    temp=(tree *)malloc(sizeof root);//动态建树，更耗内存，会MLE
     Mem0(temp->next);
     p->next[x]=temp;
   }
