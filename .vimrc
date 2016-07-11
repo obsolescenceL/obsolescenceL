@@ -32,7 +32,7 @@ endfunc
 
 func Run()
   exec "w"
-  exec "!g++ % -o a.exe && ./a.exe < in.txt"
+  exec "!g++ -std=c++11 % -o a.exe && ./a.exe < in.txt"
 endfunc
 
 map <C-K> :call Run()<CR>
