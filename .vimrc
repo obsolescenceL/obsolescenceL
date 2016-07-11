@@ -30,10 +30,17 @@ func SetTitle()
   endif
 endfunc
 
-
 func Run()
-  exec "w"
-  exec "!g++ -std=c++11 % -o a.exe && ./a.exe < in.txt"
+  exec "w" 
+  if &filetype == 'cpp'
+    exec "!g++ -std=c++11 % -o a.exe && ./a.exe < in.txt"
+  elseif &filetype == 'python'
+    exec "!python %"
+  elseif &filetype == 'haskell'
+    "exec "!ghc --make % -o hs.exe && ./hs.exe < in.txt"
+    exec "!runhaskell % < in.txt"
+  endif
 endfunc
+
 
 map <C-K> :call Run()<CR>
