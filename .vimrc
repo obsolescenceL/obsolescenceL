@@ -4,12 +4,12 @@ filetype on
 set cin
 set shiftwidth=2
 set expandtab
-set mouse=a
+"set mouse=a
 set cursorline
 set ruler
 set showcmd
 set background=dark
-colorscheme solarized
+"colorscheme solarized
 set lbr "不在单词中间断行
 "禁止生成临时文件
 set nobackup
