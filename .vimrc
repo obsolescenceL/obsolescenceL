@@ -1,12 +1,13 @@
-set nu
-syn on
+set nu" 显示行号
+syn on" 自动语法高亮
 filetype on
 set cin
-set shiftwidth=2
-set expandtab
+set shiftwidth=2" 设定 << 和 >> 命令移动时的宽度为 2
+set expandtab" 不要tab
 "set mouse=a
 set cursorline
-set ruler
+set ruler" 打开状态栏标尺
+set hlsearch " 搜索时高亮显示被找到的文本
 set showcmd
 set background=dark
 "colorscheme solarized
