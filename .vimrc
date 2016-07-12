@@ -1,19 +1,21 @@
-set nu
-syn on
-filetype on
-set cin
-set shiftwidth=2
-set expandtab
-set mouse=a
+set nocp "Bram 爷爷强烈推荐使用 VIM 的不兼容模式                                                                                                                                              
+set nu "显示行号
+syn on "自动语法高亮
+filetype plugin indent on "开启文件类型自动识别，启用文件类型插件，启用针对文件类型的自动缩进
+set cin 
+set sw=2 "set shiftwidth设定 << 和 >> 命令移动时的宽度为 2
+set expandtab "不要tab
 set cursorline
-set ruler
+set ru "set ruler打开状态栏标尺
+set hls "set hlsearch搜索时高亮显示被找到的文本
 set showcmd
-set background=dark
-colorscheme solarized
 set lbr "不在单词中间断行
-"禁止生成临时文件
-set nobackup
+set nobackup "禁止生成临时文件
 set noswapfile
+set background=dark
+set sm "显示括号配对情况
+"set mouse=a
+"colorscheme solarized
 autocmd BufNewFile *.cpp exec ":call SetTitle()"
 func SetTitle()
   if &filetype == 'cpp'
@@ -29,10 +31,17 @@ func SetTitle()
   endif
 endfunc
 
-
 func Run()
-  exec "w"
-  exec "!g++ % -o a.exe && ./a.exe < in.txt"
+  exec "w" 
+  if &filetype == 'cpp'
+    exec "!g++ -std=c++11 % -o a.exe && ./a.exe < in.txt"
+  elseif &filetype == 'python'
+    exec "!python %"
+  elseif &filetype == 'haskell'
+    "exec "!ghc --make % -o hs.exe && ./hs.exe < in.txt"
+    exec "!runhaskell % < in.txt"
+  endif
 endfunc
+
 
 map <C-K> :call Run()<CR>
