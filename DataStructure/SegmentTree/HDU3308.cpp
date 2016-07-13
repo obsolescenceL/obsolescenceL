@@ -1,7 +1,7 @@
 /*************************************************************************
      File Name: HDU3308.cpp
      ID: obsoles1
-     PROG: 求最大区间和
+     PROG: 求最长连续递增序列
      LANG: C++ 
      Mail: 384099319@qq.com 
      Created Time: 2015年04月20日 星期一 15时46分18秒
@@ -14,9 +14,9 @@
 using namespace std;
 const int N=100001;
 struct node{
-  int cnt;
-  int ln,rn;
-  int ls,rs,ms;
+  int cnt;//区间长度
+  int ln,rn;//左边界，右边界
+  int ls,rs,ms;//左连续，右连续，LCIS
 }T[N<<2];
 
 void push_up(int t){
