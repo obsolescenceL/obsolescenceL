@@ -12,10 +12,7 @@ struct node{
   int v,lazy,size,w;
   node *pre,*ch[2];
   node(){size=w=lazy=0;}
-  *node(int _v):v(_v){
-    ch[0]=ch[1]=0;
-    size=w=1,lazy=0;
-  }
+  *node(int _v):v(_v){size=w=1,lazy=0;}
   int l_size(){return ch[0]? ch[0]->size:0;}
   int r_size(){return ch[1]? ch[1]->size:0;}
   void merger(){
