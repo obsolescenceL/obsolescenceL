@@ -29,8 +29,7 @@ int main(){
       for(j=0;j<m+1;++j)
         scanf("%d",&dp[i][j]);
     for(i=0;i<n;++i)a[i]='a'+i;
-    a[n]='\0';
-    b[m]='\0';
+    a[n]=b[m]='\0';
     Mem0(vis_b);
     for(i=1;i<=n;++i)
       for(j=1;j<=m;++j)
@@ -47,18 +46,15 @@ int main(){
                 a[k]=b[j-1];
             a[i-1]=b[j-1];
           }
-        }else if(a[i-1]==b[j-1]){
-          if(!vis_b[j])b[j-1]++;
         }
     bool flag[26];
     Mem0(flag);
     for(i=0;i<n;++i)
       flag[a[i]-'a']=1;
-    int tmp=25;
+    int tmp;
     for(i=0;i<26;++i)
       if(!flag[i]){
-        tmp=i;
-        break;
+        tmp=i;break;
       }
     //cout<<"tmp="<<tmp<<endl;
     for(i=1;i<=m;++i)
