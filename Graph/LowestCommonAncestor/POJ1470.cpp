@@ -74,22 +74,17 @@ int main(){
   int i,j,s,d,m;
   while(~scanf("%d",&n)){
     init();
-    //cout<<"n="<<n<<endl;
     for(i=0;i<n;++i){
       scanf("%d:(%d)",&s,&m);
-      //cout<<"s="<<s<<" m="<<m<<endl;
       for(j=0;j<m;++j){
         scanf("%d",&d);
-        //cout<<"d="<<d<<endl;
         Addedge(s,d);
         root[d]=1;
       }
     }
     scanf("%d",&m);
-    //cout<<"m="<<m<<endl;
     for(j=0;j<m;++j){
       scanf(" (%d %d)",&s,&d);
-      //cout<<'('<<s<<' '<<d<<')'<<endl;
       qes[s].pb(d),qes[d].pb(s);
     }
     for(i=1;i<=n;++i)
