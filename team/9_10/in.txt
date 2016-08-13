@@ -1,0 +1,23 @@
+2
+a b
+c c
+3 3
+axa
+axx
+xxa
+3 3
+aax
+aax
+xxa
+2
+a b
+c c
+3 3
+bxa
+axx
+xxb
+3 3
+xcx
+cxx
+xxc
+
