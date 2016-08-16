@@ -6,37 +6,36 @@
      Created Time: 2015年07月24日 星期五 11时06分25秒
  ************************************************************************/
 #include<cstdio>
-#include<cstring>
-#include<iostream>
-#include<algorithm>
-#include<map>
-#include<queue>
-#include<stack>
 #include<cmath>
-#include<cctype>
-#include<ctime>
-#include<cstdlib>
-#include<string>
-#include<vector>
-#include<set>
-#include<bitset>
 #define Max(x,y) ((x)>(y)?(x):(y))
 #define Min(x,y) ((x)<(y)?(x):(y))
-#define each(it,v) for(__typeof((v).begin()) it=(v).begin();it!=(v).end();++it)
-#define Abs(x,y) ((x)>(y)?((x)-(y)):((y)-(x)))
-#define ll long long
-#define Mem0(x) memset(x,0,sizeof(x))
-#define Mem1(x) memset(x,-1,sizeof(x))
-#define MemX(x) memset(x,0x3f,sizeof(x))
-#define pb push_back
-using namespace std;
+const int N=50010,M=20;
+int n,num[N],x[N],y[N],maxn[N][M],dp[N];
 
-void RMQ_ST(int n){
-  int i,j;
-  for(i=1;i<=n;++i);
-  for(j=1;j<M;++j)
-    for(i=1;i<=n-(1<<j)+1;++i)
-      
+void update(int x){
+  maxn[x][0]=dp[x];
+  for(int i=1;x<=n-(1<<i)+1;++i)
+    maxn[x][i]=Max(maxn[x][i-1],maxn[x+(1<<(i-1))][i-1]);
+}
+
+int query(int l,int r){
+  if(l>r)return 0;
+  int k=(int)(log(r-l+1.0)/log(2.0));
+  return Max(maxn[l][k],maxn[r-(1<<k)+1][k]);
+}
 
 int main(){
-
+  int i,j;
+  while(~scanf("%d",&n)){
+    for(i=1;i<=n;++i){
+      scanf("%d%d%d",num+i,x+i,y+i);
+      x[i]+=i;
+      y[i]=Min(n,y[i]+i-1);
+    }
+    for(i=n;i>0;--i){
+      dp[i]=num[i]+query(x[i],y[i]);
+      update(i);
+    }
+    printf("%d\n",dp[1]);
+  }
+}
