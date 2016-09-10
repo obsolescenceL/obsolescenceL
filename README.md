@@ -20,5 +20,5 @@
 
 
 
-[Insist学姐的博客](http://blog.csdn.net/u011346442)
+[obsolescence的博客](http://blog.csdn.net/obsolescence)
 
