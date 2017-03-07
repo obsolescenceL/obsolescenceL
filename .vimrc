@@ -16,6 +16,13 @@ set background=dark
 set sm "显示括号配对情况
 "set mouse=a
 "colorscheme solarized
+"窗口分割时,进行切换的按键热键需要连接两次,比如从下方窗口移动
+"光标到上方窗口,需要<c-w><c-w>k,非常麻烦,现在重映射为<c-k>,切换的
+"时候会变得非常方便.
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 autocmd BufNewFile *.cpp exec ":call SetTitle()"
 func SetTitle()
   if &filetype == 'cpp'
